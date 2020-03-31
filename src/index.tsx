@@ -4,12 +4,12 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import storyStore from "./stores/StoryStore";
+import store from './stores';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App stories={storyStore.stories}
-             onArchiveHandler={(id) => {console.log(id)}}/>
+        <App stories={store.storyStore.readableStories}
+             onArchiveHandler={(id) => {store.archiveStore.archiveStoryIds.push(id) }}/>
     </React.StrictMode>,
     document.getElementById('root')
 );

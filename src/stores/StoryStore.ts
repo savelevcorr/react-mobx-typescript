@@ -1,4 +1,6 @@
-import {observable} from "mobx";
+import {computed, observable} from "mobx";
+import {RootStore} from "./index";
+import {Story} from "../types/Types";
 
 const INITAL_STATE = [
     {
@@ -19,11 +21,25 @@ const INITAL_STATE = [
     }
 ];
 
+function isNotArchived(archivedStoryIds: number[]) {
+    return function (story: Story): boolean {
+        return archivedStoryIds.indexOf(story.objectID) === -1;
+    }
+}
+
 class StoryStore {
     @observable
     stories = INITAL_STATE;
+
+    constructor(public rootStore: RootStore) {
+        this.rootStore = rootStore;
+    }
+
+    @computed
+    get readableStories() {
+        const {archiveStoryIds} = this.rootStore.archiveStore;
+        return this.stories.filter(isNotArchived(archiveStoryIds));
+    }
 }
 
-const storyStore = new StoryStore();
-
-export default storyStore;
+export default StoryStore;
