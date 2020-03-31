@@ -2,14 +2,13 @@ import React, {} from 'react';
 
 import './App.scss';
 import StoryList from './components/Stories/Stories';
+import rootStore from "./stores";
 
-import {Stories} from './types/Types';
-
-function App({stories, onArchiveHandler}: Stories) {
+function App() {
     return (
         <div className="app">
-            <StoryList stories={stories}
-                       onArchiveHandler={onArchiveHandler}/>
+            <StoryList storyStore={rootStore.storyStore}
+                       archiveStore={rootStore.archiveStore} />
         </div>
     );
 }

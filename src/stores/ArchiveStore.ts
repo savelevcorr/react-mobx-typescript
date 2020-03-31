@@ -1,4 +1,4 @@
-import {observable} from "mobx";
+import {observable, action} from "mobx";
 import {RootStore} from "./index";
 
 class ArchiveStore {
@@ -8,6 +8,11 @@ class ArchiveStore {
 
     constructor(public rootStore: RootStore) {
         this.rootStore = rootStore;
+    }
+
+    @action
+    archiveStory = (id: number) => {
+        this.archiveStoryIds.push(id);
     }
 }
 

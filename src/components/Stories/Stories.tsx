@@ -1,9 +1,10 @@
 import React from "react";
+import {inject, observer} from "mobx-react";
 
 import s from './Stories.module.scss';
-import {Stories} from "../../types/Types";
 import Story from './Story/Story';
 import StoriesHeader from "./StoriesHeader/StoriesHeader";
+import {RootStore} from "../../stores";
 
 const COLUMNS = {
     title: {
@@ -27,17 +28,17 @@ const COLUMNS = {
     }
 };
 
-const StoryList = ({stories, onArchiveHandler}: Stories) => (
+const StoryList = ({storyStore, archiveStore}: RootStore) => (
     <div className={s.stories}>
         <StoriesHeader columns={COLUMNS}/>
 
-        {stories.map(story => (
+        {storyStore.readableStories.map(story => (
             <Story key={story.objectID}
                    columns={COLUMNS}
-                   onArchiveHandler={onArchiveHandler}
+                   onArchiveHandler={archiveStore.archiveStory}
                    story={story}/>
         ))}
     </div>
 );
 
-export default StoryList;
+export default inject('storyStore', 'archiveStore')(observer(StoryList));
