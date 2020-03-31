@@ -27,13 +27,14 @@ const COLUMNS = {
     }
 };
 
-const StoryList = ({stories}: Stories) => (
+const StoryList = ({stories, onArchiveHandler}: Stories) => (
     <div className={s.stories}>
         <StoriesHeader columns={COLUMNS}/>
 
         {stories.map(story => (
             <Story key={story.objectID}
                    columns={COLUMNS}
+                   onArchiveHandler={onArchiveHandler}
                    story={story}/>
         ))}
     </div>

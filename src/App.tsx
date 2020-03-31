@@ -5,10 +5,11 @@ import StoryList from './components/Stories/Stories';
 
 import {Stories} from './types/Types';
 
-function App({stories}: Stories) {
+function App({stories, onArchiveHandler}: Stories) {
     return (
         <div className="app">
-            <StoryList stories={stories}/>
+            <StoryList stories={stories}
+                       onArchiveHandler={onArchiveHandler}/>
         </div>
     );
 }

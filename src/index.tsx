@@ -4,28 +4,12 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const stories = [
-    {
-        title: 'React',
-        author: 'Jordan Walke',
-        url: 'https://facebook.github.io/react/',
-        num_comments: 3,
-        points: 4,
-        objectID: 0
-    },
-    {
-        title: 'Redux',
-        author: 'Dan Abramov',
-        url: 'https://github.com/reactjs/redux/',
-        num_comments: 2,
-        points: 5,
-        objectID: 1
-    }
-];
+import storyStore from "./stores/StoryStore";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App stories={stories}/>
+        <App stories={storyStore.stories}
+             onArchiveHandler={(id) => {console.log(id)}}/>
     </React.StrictMode>,
     document.getElementById('root')
 );

@@ -9,13 +9,15 @@ export type Story = {
 
 export type StoryItem = {
     story: Story,
+    onArchiveHandler(id: number): void,
     columns: {
         [name: string]: Column
     }
 };
 
 export type Stories = {
-    stories: Story[]
+    stories: Story[],
+    onArchiveHandler(id: number): void
 }
 
 export type Column = {

@@ -13,3 +13,28 @@
     padding: 0 5px;
   }
 }
+
+button {
+
+}
+
+.button-inline {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+  background: transparent;
+  color: #808080;
+  cursor: pointer;
+  text-align: inherit;
+  -webkit-font-smoothing: inherit;
+  font-size: inherit;
+
+  &:hover {
+    color: #222;
+  }
+
+  &-active {
+    border-radius: 0;
+    border-bottom: 1px solid #38bb6c;
+  }
+}
