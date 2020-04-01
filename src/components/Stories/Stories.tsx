@@ -4,7 +4,7 @@ import {inject, observer} from "mobx-react";
 import s from './Stories.module.scss';
 import Story from './Story/Story';
 import StoriesHeader from "./StoriesHeader/StoriesHeader";
-import {RootStore} from "../../stores";
+import rootStore, {RootStore} from "../../stores";
 
 const COLUMNS = {
     title: {
@@ -28,14 +28,14 @@ const COLUMNS = {
     }
 };
 
-const StoryList = ({storyStore, archiveStore}: RootStore) => (
+const StoryList = ({storyStore}: RootStore) => (
     <div className={s.stories}>
         <StoriesHeader columns={COLUMNS}/>
 
         {storyStore.readableStories.map(story => (
             <Story key={story.objectID}
                    columns={COLUMNS}
-                   onArchiveHandler={archiveStore.archiveStory}
+                   archiveStore={rootStore.archiveStore}
                    story={story}/>
         ))}
     </div>

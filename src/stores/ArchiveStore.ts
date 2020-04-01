@@ -1,7 +1,9 @@
 import {observable, action} from "mobx";
+
+import {IArchiveStore} from "../types/Types";
 import {RootStore} from "./index";
 
-class ArchiveStore {
+class ArchiveStore implements IArchiveStore {
 
     @observable
     archiveStoryIds: number[] = [];

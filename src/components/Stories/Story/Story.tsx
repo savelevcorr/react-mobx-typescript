@@ -1,9 +1,10 @@
 import React from "react";
+import {inject, observer} from "mobx-react";
 
 import s from './Story.module.scss';
 import {StoryItem} from "../../../types/Types";
 
-const Story = ({story, columns, onArchiveHandler}: StoryItem) => {
+const Story = ({story, columns, archiveStore}: StoryItem) => {
     const {
         author,
         title,
@@ -22,7 +23,7 @@ const Story = ({story, columns, onArchiveHandler}: StoryItem) => {
             <span style={{width: columns.comments.width}}>{num_comments}</span>
             <span style={{width: columns.points.width}}>{points}</span>
             <span style={{width: columns.archive.width}}>
-                <button className={s['button-inline']} onClick={() => {onArchiveHandler(objectID)}}>
+                <button className={s['button-inline']} onClick={() => {archiveStore.archiveStory(objectID)}}>
                     Archive
                 </button>
             </span>
@@ -30,4 +31,4 @@ const Story = ({story, columns, onArchiveHandler}: StoryItem) => {
     );
 };
 
-export default Story
+export default inject('archiveStore')(observer(Story))

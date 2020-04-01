@@ -9,10 +9,10 @@ export type Story = {
 
 export type StoryItem = {
     story: Story,
-    onArchiveHandler(id: number): void,
     columns: {
         [name: string]: Column
-    }
+    },
+    archiveStore: IArchiveStore
 };
 
 export type Stories = {
@@ -29,4 +29,10 @@ export type Columns = {
     columns: {
         [name: string]: Column
     }
+}
+
+export interface IArchiveStore {
+    archiveStoryIds: number[];
+
+    archiveStory(id: number): void
 }
