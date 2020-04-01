@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Search stories
+
+Simple typescript project based on React and MobX.
+It uses the Hacker News API for fetching a list of stories.
 
 ## Available Scripts
 
