@@ -29,18 +29,34 @@ const COLUMNS = {
     }
 };
 
-const StoryList = ({storyStore}: RootStore) => (
-    <div className={s.stories}>
-        <SearchStories storyStore={rootStore.storyStore} />
-        <StoriesHeader columns={COLUMNS}/>
+const StoryList = ({storyStore}: RootStore) => {
+    const renderStories = () => {
+        if (storyStore.readableStories.length) {
+            return storyStore.readableStories.map(story => (
+                <Story key={story.objectID}
+                       columns={COLUMNS}
+                       archiveStore={rootStore.archiveStore}
+                       story={story}/>
+            ))
+        } else {
+            return <p style={{textAlign: "center", fontSize: '16px'}}>
+                No stories...
+            </p>;
+        }
+    };
 
-        {storyStore.readableStories.map(story => (
-            <Story key={story.objectID}
-                   columns={COLUMNS}
-                   archiveStore={rootStore.archiveStore}
-                   story={story}/>
-        ))}
-    </div>
-);
+    return (
+        <div className={s.stories}>
+            <SearchStories storyStore={rootStore.storyStore}/>
+            <StoriesHeader columns={COLUMNS}/>
+
+            {
+                storyStore.isLoading ?
+                    <p style={{fontWeight: 'bolder', textAlign: "center"}}>Loading....</p> :
+                    renderStories()
+            }
+        </div>
+    );
+};
 
 export default inject('storyStore', 'archiveStore')(observer(StoryList));

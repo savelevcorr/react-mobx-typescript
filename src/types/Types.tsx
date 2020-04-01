@@ -43,14 +43,17 @@ export interface IButton {
 export interface IStoryStore {
     stories: Story[],
     readableStories: Story[],
-    rootStore: IRootStore
+    rootStore: IRootStore,
+    isLoading: boolean,
 
+    setLoadingState(state: boolean): void
     setStories(stories: Story[]): void
+    setError(error: object): void
 }
 
 export interface IArchiveStore {
     archiveStoryIds: number[],
-    rootStore: IRootStore
+    rootStore: IRootStore,
 
     archiveStory(id: number): void
 }

@@ -29,9 +29,16 @@ class SearchStories extends Component<ISearchStoriesProps> {
         if (this.query.length) {
             this.query = '';
 
+            storyStore.setLoadingState(true);
             fetchData(`${this.HN_BASE_ULR}${query}`)
                 .then((res: { hits: Story[] }) => {
                     storyStore.setStories(res.hits);
+                    storyStore.setLoadingState(false);
+                })
+                .catch(error => {
+                    storyStore.setLoadingState(false);
+                    storyStore.setStories([]);
+                    storyStore.setError(error)
                 });
         }
 
