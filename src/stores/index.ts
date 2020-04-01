@@ -1,7 +1,12 @@
 import ArchiveStore from "./ArchiveStore";
 import StoryStore from "./StoryStore";
+import {configure} from "mobx";
+import {IRootStore} from "../types/Types";
 
-export class RootStore {
+configure({
+    enforceActions: 'observed'
+});
+export class RootStore implements IRootStore{
     storyStore: StoryStore;
     archiveStore: ArchiveStore;
 

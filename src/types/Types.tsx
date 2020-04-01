@@ -1,3 +1,5 @@
+import {MouseEvent} from 'react';
+
 export type Story = {
     title: string,
     author: string,
@@ -31,8 +33,32 @@ export type Columns = {
     }
 }
 
+export interface IButton {
+    type: 'submit' | 'button',
+    styleClassName?: string,
+
+    clickHandler?(event: MouseEvent): void
+}
+
+export interface IStoryStore {
+    stories: Story[],
+    readableStories: Story[],
+    rootStore: IRootStore
+
+    setStories(stories: Story[]): void
+}
+
 export interface IArchiveStore {
-    archiveStoryIds: number[];
+    archiveStoryIds: number[],
+    rootStore: IRootStore
 
     archiveStory(id: number): void
+}
+
+export interface IRootStore {
+    storyStore: IStoryStore
+}
+
+export interface ISearchStoriesProps {
+    storyStore: IStoryStore
 }

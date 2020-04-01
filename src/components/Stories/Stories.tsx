@@ -4,6 +4,7 @@ import {inject, observer} from "mobx-react";
 import s from './Stories.module.scss';
 import Story from './Story/Story';
 import StoriesHeader from "./StoriesHeader/StoriesHeader";
+import SearchStories from "./SearchStories/SearchStories";
 import rootStore, {RootStore} from "../../stores";
 
 const COLUMNS = {
@@ -30,6 +31,7 @@ const COLUMNS = {
 
 const StoryList = ({storyStore}: RootStore) => (
     <div className={s.stories}>
+        <SearchStories storyStore={rootStore.storyStore} />
         <StoriesHeader columns={COLUMNS}/>
 
         {storyStore.readableStories.map(story => (
