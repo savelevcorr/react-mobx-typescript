@@ -15,7 +15,7 @@ const Story = ({story, columns, archiveStore}: StoryItem) => {
     } = story;
 
     return (
-        <div className={s['story-item']}>
+        <div className={[s['story-item'], 'js-story-item'].join(' ')}>
             <span style={{width: columns.title.width}}>
                 <a href={url}>{title}</a>
             </span>

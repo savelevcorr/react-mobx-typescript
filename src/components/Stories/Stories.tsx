@@ -46,7 +46,7 @@ const StoryList = ({storyStore}: RootStore) => {
     };
 
     return (
-        <div className={s.stories}>
+        <div className={[s.stories, 'js-stories-container'].join(' ')}>
             <SearchStories storyStore={rootStore.storyStore}/>
             <StoriesHeader columns={COLUMNS}/>
 
